@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <name>encryption</name>
     <js-module name="encryption" src="www/encryption.js">
-        <clobbers target="cordova.plugins.encryption" />
+        <clobbers target="encryption" />
     </js-module>
     <platform name="android">
         <config-file parent="/*" target="res/xml/config.xml">
