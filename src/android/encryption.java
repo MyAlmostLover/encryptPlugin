@@ -1,5 +1,7 @@
 package cordova.encryption;
 
+import android.content.Context;
+
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 
@@ -13,7 +15,6 @@ import com.nisc.SecurityEngine;
 import com.nisc.SecurityEngineAlg;
 import com.nisc.api.SecEngineException;
 
-import android.util.log;
 
 /**
  * This class echoes a string called from JavaScript.
@@ -33,18 +34,16 @@ public class encryption extends CordovaPlugin {
     private void coolMethod(String message, CallbackContext callbackContext) {
         if (message != null && message.length() > 0) {
 
-            private static final String IbcServer = "60.205.94.181:443";
-            private Olym_Device_SecurityEngine olymDeviceSecurityEngine;
+            String IbcServer = "60.205.94.181:443";
+            Olym_Device_SecurityEngine olymDeviceSecurityEngine;
 
             try {
-                Log.i("设备参数初始化");
+                Context context=this.cordova.getActivity().getApplicationContext();
             //设备参数初始化
             olymDeviceSecurityEngine = Olym_Device_SecurityEngine.getInstance();
-            Log.i("getInstance");
+            olymDeviceSecurityEngine.initSecurityEngineWithNtls(context);
             //设置IBC平台地址（私钥下载地址）
             olymDeviceSecurityEngine.setIBCServer(IbcServer);
-            olymDeviceSecurityEngine.initSecurityEngineWithNtls(getBaseContext());
-            callbackContext.success("initSecurityEngineWithNtls");
 
             boolean isUserExit = false;
             //检查是否用户私钥存在在设备上上
@@ -74,12 +73,11 @@ public class encryption extends CordovaPlugin {
             // olymCipherSecurityEngine = Olym_Cipher_SecurityEngine.getInstance();
 
             } catch (SecEngineException e) {
-                Log.i("SecEngineException");
-                callbackContext.error(e);
+
             }
             callbackContext.success(message);
         } else {
-            Log.i("else");
+
             callbackContext.error("Expected one non-empty string argument.");
             
         }
