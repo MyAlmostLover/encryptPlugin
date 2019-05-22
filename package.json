@@ -1,19 +1,42 @@
 {
-  "name": "encryption",
-  "version": "1.1.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "_from": "git+https://github.com/MyAlmostLover/encryptPlugin.git",
+  "_id": "encryption@1.1.0",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/encryption",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "https://github.com/MyAlmostLover/encryptPlugin.git",
+    "rawSpec": "https://github.com/MyAlmostLover/encryptPlugin.git",
+    "saveSpec": "git+https://github.com/MyAlmostLover/encryptPlugin.git",
+    "fetchSpec": "https://github.com/MyAlmostLover/encryptPlugin.git",
+    "gitCommittish": null
   },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "git+https://github.com/MyAlmostLover/encryptPlugin.git#66773b76b4f6fe7467d88de832328a87336d5c2e",
+  "_spec": "https://github.com/MyAlmostLover/encryptPlugin.git",
+  "_where": "D:\\code\\SVN_SmartMailMobile\\SmartMail",
   "author": "",
+  "bugs": {
+    "url": "https://github.com/MyAlmostLover/encryptPlugin/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "",
+  "homepage": "https://github.com/MyAlmostLover/encryptPlugin#readme",
   "license": "ISC",
+  "main": "index.js",
+  "name": "encryption",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MyAlmostLover/encryptPlugin.git"
   },
-  "bugs": {
-    "url": "https://github.com/MyAlmostLover/encryptPlugin/issues"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "homepage": "https://github.com/MyAlmostLover/encryptPlugin#readme",
-  "description": ""
+  "version": "1.1.0"
 }

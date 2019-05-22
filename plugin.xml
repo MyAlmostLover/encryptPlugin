@@ -14,6 +14,17 @@
         </config-file>
         <config-file parent="/*" target="AndroidManifest.xml"></config-file>
         <source-file src="src/android/encryption.java" target-dir="src/cordova/encryption/encryption" />
-        <source-file src="src/android/SecurityEngine.jar" target-dir="libs" />
+
+        <source-file src="src/android/libs/SecurityEngine.jar" target-dir="libs" />
+        
+        <source-file src="src/android/jniLibs/armeabi/libcrypto.so" target-dir="jniLibs/armeabi" />
+        <source-file src="src/android/jniLibs/armeabi/libeyibc.so" target-dir="jniLibs/armeabi" />
+        <source-file src="src/android/jniLibs/armeabi/libntls.so" target-dir="jniLibs/armeabi" />
+        <source-file src="src/android/jniLibs/armeabi/libproxy.so" target-dir="jniLibs/armeabi" />
+        <source-file src="src/android/jniLibs/armeabi/libSecurityEngine4j.so" target-dir="jniLibs/armeabi" />
+        <source-file src="src/android/jniLibs/armeabi/libSecurityEngineNTLS.so" target-dir="jniLibs/armeabi" />
+        <source-file src="src/android/jniLibs/armeabi/libssl.so" target-dir="jniLibs/armeabi" />
+
+        <source-file src="src/android/assets/ErrorMsg.xml" target-dir="assets" />
     </platform>
 </plugin>
