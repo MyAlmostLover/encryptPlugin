@@ -1,6 +1,5 @@
 {
   "_from": "git+https://github.com/MyAlmostLover/encryptPlugin.git",
-  "_id": "encryption@1.1.0",
   "_inBundle": false,
   "_integrity": "",
   "_location": "/encryption",
@@ -20,13 +19,13 @@
   "_resolved": "git+https://github.com/MyAlmostLover/encryptPlugin.git#66773b76b4f6fe7467d88de832328a87336d5c2e",
   "_spec": "https://github.com/MyAlmostLover/encryptPlugin.git",
   "_where": "D:\\code\\SVN_SmartMailMobile\\SmartMail",
-  "author": "",
+  "author": "jl",
   "bugs": {
     "url": "https://github.com/MyAlmostLover/encryptPlugin/issues"
   },
   "bundleDependencies": false,
   "deprecated": false,
-  "description": "",
+  "description": "cordova-encryption",
   "homepage": "https://github.com/MyAlmostLover/encryptPlugin#readme",
   "license": "ISC",
   "main": "index.js",
@@ -38,5 +37,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "1.1.0"
+  "version": "1.0.6",
+  "keywords": [
+    "cordova-encryption"
+  ]
 }
