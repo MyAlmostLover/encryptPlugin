@@ -15,14 +15,14 @@
         <config-file parent="/*" target="AndroidManifest.xml"></config-file>
         <source-file src="src/android/encryption.java" target-dir="src/cordova/encryption/encryption" />
 
-        <source-file src="src/libs/SecurityEngine.jar" target-dir="libs" />
-        
-        <source-file src="src/jniLibs/armeabi/libcrypto.so" target-dir="jniLibs/armeabi" />
+        <source-file src="src/libs/SecurityEnginelibrary-release.aar" target-dir="libs" />
+            <framework src="src/android/SecurityEnginelibrary-release.gradle" custom="true" type="gradleReference" />
+        <!-- <source-file src="src/jniLibs/armeabi/libcrypto.so" target-dir="jniLibs/armeabi" />
         <source-file src="src/jniLibs/armeabi/libeyibc.so" target-dir="jniLibs/armeabi" />
         <source-file src="src/jniLibs/armeabi/libntls.so" target-dir="jniLibs/armeabi" />
         <source-file src="src/jniLibs/armeabi/libproxy.so" target-dir="jniLibs/armeabi" />
         <source-file src="src/jniLibs/armeabi/libSecurityEngineNTLS.so" target-dir="jniLibs/armeabi" />
-        <source-file src="src/jniLibs/armeabi/libssl.so" target-dir="jniLibs/armeabi" />
+        <source-file src="src/jniLibs/armeabi/libssl.so" target-dir="jniLibs/armeabi" /> -->
         <!-- <source-file src="src/jniLibs/armeabi/libSecurityEngine4j.so" target-dir="jniLibs/armeabi" /> -->
         <source-file src="src/assets/ErrorMsg.xml" target-dir="assets" />
     </platform>
