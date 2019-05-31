@@ -12,11 +12,22 @@
                 <param name="android-package" value="cordova.encryption.encryption" />
             </feature>
         </config-file>
+
+        <!-- arr引用 -->
+        <resource-file src="src/android/SecurityEnginelibrary-release.aar" target="libs/SecurityEnginelibrary-release.aar" />
+        <framework src="src/android/SecurityEnginelibrary-release.gradle" custom="true" type="gradleReference" />
+
+        <!-- 需要的android权限 -->
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <!-- <uses-feature android:name="android.hardware.usb.host" android:required="false" /> -->
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+            <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+            <uses-permission android:name="android.permission.INTERNET" />
+        </config-file>
+
         <config-file parent="/*" target="AndroidManifest.xml"></config-file>
         <source-file src="src/android/encryption.java" target-dir="src/cordova/encryption/encryption" />
 
-        <source-file src="src/android/SecurityEnginelibrary-release.aar" target="libs"/>
-        <framework src="src/android/SecurityEnginelibrary-release.gradle" custom="true" type="gradleReference" />
         <!-- <source-file src="src/jniLibs/armeabi/libcrypto.so" target-dir="jniLibs/armeabi" />
         <source-file src="src/jniLibs/armeabi/libeyibc.so" target-dir="jniLibs/armeabi" />
         <source-file src="src/jniLibs/armeabi/libntls.so" target-dir="jniLibs/armeabi" />
