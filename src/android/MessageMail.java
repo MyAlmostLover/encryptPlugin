@@ -25,9 +25,11 @@ import com.sun.mail.imap.IMAPMessage;
 import javax.mail.*;
 import javax.mail.Message.RecipientType;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
 import java.io.Serializable;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+//import java.time.ZoneId;
+//import java.time.ZonedDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -52,7 +54,7 @@ public class MessageMail implements Serializable {
     private List<Recipient> recipients;
     private Boolean encryptsm;
     private String subject;
-    //private Date receivedDate;
+    private Date receivedDate;
     private Long size;
     private Boolean flagged;
     private Boolean seen;
@@ -136,13 +138,13 @@ public class MessageMail implements Serializable {
         this.subject = subject;
     }
 
-//    public ZonedDateTime getReceivedDate() {
-//        return receivedDate;
-//    }
-//
-//    public void setReceivedDate(ZonedDateTime receivedDate) {
-//        this.receivedDate = receivedDate;
-//    }
+    public Date getReceivedDate() {
+        return receivedDate;
+    }
+
+    public void setReceivedDate(Date receivedDate) {
+        this.receivedDate = receivedDate;
+    }
 
     public Long getSize() {
         return size;
@@ -230,7 +232,7 @@ public class MessageMail implements Serializable {
                 Objects.equals(recipients, message.recipients) &&
                 Objects.equals(subject, message.subject) &&
                 Objects.equals(encryptsm, message.encryptsm) &&
-//                Objects.equals(receivedDate, message.receivedDate) &&
+                Objects.equals(receivedDate, message.receivedDate) &&
                 Objects.equals(size, message.size) &&
                 Objects.equals(flagged, message.flagged) &&
                 Objects.equals(seen, message.seen) &&
@@ -245,30 +247,30 @@ public class MessageMail implements Serializable {
     @Override
     public int hashCode() {
 
-        return Objects.hash(super.hashCode(), uid, messageId, modseq, from, replyTo, recipients, encryptsm, subject, size, flagged, seen, recent, deleted, content, attachments, references, inReplyTo);
+        return Objects.hash(super.hashCode(), uid, messageId, modseq, from, replyTo, recipients, receivedDate, encryptsm, subject, size, flagged, seen, recent, deleted, content, attachments, references, inReplyTo);
     }
 
     /**
-     * Maps an {@link com.sun.mail.imap.IMAPStore} to a {@link MessageMail}.
+     * Maps an {@link com.sun.mail.imap.IMAPStore} to a {@link Message}.
      *
      * This method should only map those fields that are retrieved performed an IMAP fetch command (ENVELOPE,
      * UID, FLAGS...)
      *
      * To map other fields use a separate method.
      *
-     * @param clazz Class of the new MessageMail instance
-     * @param folder where the message is located
+     * @param clazz Class of the new Message instance
+//     * @param folder where the message is located
      * @param imapMessage original message to map
-     * @return mapped MessageMail with fulfilled envelope fields
+     * @return mapped Message with fulfilled envelope fields
      */
-    public static <M extends MessageMail, F extends Folder & UIDFolder> M from(
-            Class<M> clazz, F folder, IMAPMessage imapMessage) {
+    public static <M extends MessageMail> M from(
+            Class<M> clazz, MimeMessage imapMessage) {
 
         final M ret;
         if (imapMessage != null) {
             try {
                 ret = clazz.newInstance();
-                ret.setUid(folder.getUID(imapMessage));
+//                ret.setUid(folder.getUID(imapMessage));
                 ret.setMessageId(imapMessage.getMessageID());
                 ret.setFrom(processAddress(imapMessage.getFrom()));
                 ret.setReplyTo(processAddress(imapMessage.getReplyTo()));
@@ -279,8 +281,8 @@ public class MessageMail implements Serializable {
                         processAddress(RecipientType.BCC, imapMessage.getRecipients(RecipientType.BCC))
                 ).flatMap(Collection::stream).collect(Collectors.toList()));
                 ret.setSubject(imapMessage.getSubject());
-                //ret.setReceivedDate(imapMessage.getReceivedDate().toInstant().atZone(ZoneId.of(CET_ZONE_ID)));
-                ret.setSize(imapMessage.getSizeLong());
+                ret.setReceivedDate(imapMessage.getReceivedDate());
+                ret.setSize((long)imapMessage.getSize());
                 ret.setInReplyTo(Arrays.asList(
                         Optional.ofNullable(imapMessage.getHeader(HEADER_IN_REPLY_TO)).orElse(new String[0])));
                 ret.setReferences(Arrays.asList(
@@ -308,8 +310,8 @@ public class MessageMail implements Serializable {
         return ret;
     }
 
-    public static <F extends Folder & UIDFolder> MessageMail from(F folder, IMAPMessage imapMessage) {
-        return from(MessageMail.class, folder, imapMessage);
+    public static <F extends Folder & UIDFolder> MessageMail from(MimeMessage imapMessage) {
+        return from(MessageMail.class, imapMessage);
     }
 
     private static List<Recipient> processAddress(RecipientType recipient, Address... addresses) {

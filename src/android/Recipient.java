@@ -41,6 +41,10 @@ public class Recipient implements Serializable {
         this.type = type;
         this.address = address;
     }
+    public Recipient()
+    {
+
+    }
 
     public String getType() {
         return type;

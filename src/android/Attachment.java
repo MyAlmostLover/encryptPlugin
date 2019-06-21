@@ -37,8 +37,17 @@ public class Attachment implements Serializable {
     private String fileName;
     private String contentType;
     private Integer size;
+    private String _links;
     private byte[] content;
     public Attachment(){}
+
+    public String get_links() {
+        return _links;
+    }
+
+    public void set_links(String _links) {
+        this._links = _links;
+    }
 
     public Attachment(String contentId, String fileName, String contentType, Integer size) {
         this.contentId = contentId;
@@ -95,12 +104,13 @@ public class Attachment implements Serializable {
         return Objects.equals(contentId, that.contentId) &&
                 Objects.equals(fileName, that.fileName) &&
                 Objects.equals(contentType, that.contentType) &&
+				Objects.equals(_links, that._links) &&
                 Objects.equals(size, that.size);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(contentId, fileName, contentType, size);
+        return Objects.hash(contentId, fileName, contentType, _links, size);
     }
 }
